@@ -36,12 +36,18 @@ class QuoteScreen extends React.Component {
 }
 
 class HomeScreen extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      quoteIndex: 2,
+    }
+  }
   static navigationOptions = {
     title: 'Welcome',
   };
   render() {
     const { navigate } = this.props.navigation;
-    quote = quotes[2]
+    quote = quotes[this.state.quoteIndex]
     return (
         <View style={styles.container}>
             <TouchableOpacity style={styles.button} onPress={() => {navigate('Quotes', {text:quote.text, source:quote.source})}}>
@@ -52,6 +58,11 @@ class HomeScreen extends React.Component {
     );
   }
 }
+
+export default SimpleApp = StackNavigator({
+  Home: { screen: HomeScreen },
+  Quotes: { screen: QuoteScreen },
+});
 
 const styles = StyleSheet.create({
 
@@ -123,9 +134,4 @@ const styles = StyleSheet.create({
     width: 200,
     height: 200,
   },
-});
-
-export default SimpleApp = StackNavigator({
-  Home: { screen: HomeScreen },
-  Quotes: { screen: QuoteScreen },
 });
