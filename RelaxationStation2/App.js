@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
   Button,
-  Platform
+  Platform,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
@@ -16,18 +16,37 @@ const zenImage = require('./assets/zen.png')
 const bgImage = require('./assets/bg.png')
 
 class QuoteScreen extends React.Component {
+  constructor () {
+    super()
+    this.state = {
+      quoteIndex: 2,
+    }
+  }
+
+  updateQuoteIndex() {
+    let newIndex
+    if (this.state.quoteIndex + 1 == quotes.length) {
+      newIndex = 0
+    } else {
+      newIndex = this.state.quoteIndex + 1
+    }
+    this.setState({
+      quoteIndex: newIndex
+    })
+  }
+
   static navigationOptions = {
     title: 'Quotes',
   };
   render() {
-    const { params } = this.props.navigation.state;
+    quote = quotes[this.state.quoteIndex]
     return (
       <Image source={bgImage} style={styles.backgroundContainer}>
         <View style={styles.quoteContaner}> 
-          <Text style={styles.quoteText}>"{params.text}"</Text>
-          <Text style={styles.sourceText}>- {params.source}</Text>
+          <Text style={styles.quoteText}>"{quote.text}"</Text>
+          <Text style={styles.sourceText}>- {quote.source}</Text>
         </View>
-        <TouchableOpacity style={styles.nextQuoteButton}>
+        <TouchableOpacity style={styles.nextQuoteButton} onPress={() => this.updateQuoteIndex()}>
           <Text style={styles.nextQuoteButtonText}>Next Thought</Text>
         </TouchableOpacity>
       </Image>
@@ -36,21 +55,15 @@ class QuoteScreen extends React.Component {
 }
 
 class HomeScreen extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      quoteIndex: 2,
-    }
-  }
+
   static navigationOptions = {
     title: 'Welcome',
   };
   render() {
     const { navigate } = this.props.navigation;
-    quote = quotes[this.state.quoteIndex]
     return (
         <View style={styles.container}>
-            <TouchableOpacity style={styles.button} onPress={() => {navigate('Quotes', {text:quote.text, source:quote.source})}}>
+            <TouchableOpacity style={styles.button} onPress={() => {navigate('Quotes')}}>
               <Image source={zenImage} style={styles.buttonImage} />
               <Text style={styles.readyText}>I'm ready to relax...</Text>                  
             </TouchableOpacity>
