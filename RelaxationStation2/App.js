@@ -8,12 +8,32 @@ import {
   TouchableOpacity,
   Button,
   Platform,
+  LayoutAnimation,
 } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 
 const { quotes } = require('./quotes.json')
 const zenImage = require('./assets/zen.png')
 const bgImage = require('./assets/bg.png')
+const tranquil = {
+  duration: 500,
+  create: {
+    duration: 1000,
+    delay: 1000,
+    type: LayoutAnimation.Types.easeIn,
+    property: LayoutAnimation.Properties.opacity,
+  },
+  update: {
+    type: LayoutAnimation.Types.easeInEaseOut,
+    property: LayoutAnimation.Properties.opacity,
+  },
+  delete: {
+    duration: 200,
+    type: LayoutAnimation.Types.easeOut,
+    property: LayoutAnimation.Properties.opacity,
+  },
+}
+
 
 class QuoteScreen extends React.Component {
   constructor () {
@@ -21,6 +41,10 @@ class QuoteScreen extends React.Component {
     this.state = {
       quoteIndex: 2,
     }
+  }
+
+  componentWillUpdate() {
+    LayoutAnimation.configureNext(tranquil)
   }
 
   updateQuoteIndex() {
