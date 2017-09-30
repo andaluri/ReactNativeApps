@@ -3,12 +3,17 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import MainContainer from './components/MainContainer'
 
-const isUp = true
-
 export default class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            isUp: false,
+            lastUptime: new Date((new Date()).getTime() - 5 * 60 * 1000),
+        }
+    }
     render() {
         return (
-            <MainContainer isUp={isUp}/>
+            <MainContainer isUp={this.state.isUp} lastUpTime={this.state.lastUptime}/>
         )
     }
 }

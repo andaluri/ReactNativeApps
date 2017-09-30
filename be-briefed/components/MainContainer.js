@@ -11,7 +11,7 @@ class MainContainer extends Component {
 	render() {
 		return (
 			<View style={styles.container}>
-				<StatusScreen isUp={this.props.isUp}/>
+				<StatusScreen isUp={this.props.isUp} lastUptime={this.props.lastUptime}/>
 			</View>
 		)
 	}
