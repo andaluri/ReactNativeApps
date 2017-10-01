@@ -13,7 +13,7 @@ export default class App extends React.Component {
     }
     render() {
         return (
-            <MainContainer isUp={this.state.isUp} lastUpTime={this.state.lastUptime}/>
+            <MainContainer isUp={this.state.isUp} lastUptime={this.state.lastUptime}/>
         )
     }
 }
