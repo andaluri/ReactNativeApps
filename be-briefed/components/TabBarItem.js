@@ -4,6 +4,7 @@ import {
 	Text,
 	StyleSheet,
 } from 'react-native'
+
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 const TabBarItem = (props) => (
@@ -12,11 +13,7 @@ const TabBarItem = (props) => (
 		<Text style={styles.label}>{[props.label, props.selected && styles.selectedLabel]}</Text>
 	</View>
 )
-TabBarItem.propTypes = {
-	label: PropTypes.string.isRequired,
-	icon: PropTypes.string.isRequired,
-	selected: PropTypes.bool,
-}
+
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'column',
