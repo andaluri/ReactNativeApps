@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react'
+import React from 'react'
 import {
 	View,
 	Text,
@@ -13,6 +13,7 @@ const TabBarItem = (props) => (
 		<Text style={styles.label}>{[props.label, props.selected && styles.selectedLabel]}</Text>
 	</View>
 )
+
 
 const styles = StyleSheet.create({
 	container: {
@@ -33,4 +34,5 @@ const styles = StyleSheet.create({
 		color: '#cc9766'
 	}
 })
+
 export default TabBarItem

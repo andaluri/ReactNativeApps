@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 import {
 	View,
 	Text,
@@ -23,10 +23,16 @@ class MainContainer extends Component {
 		return (
 			<View style={styles.container}>
 				{this._renderTab(this.props.selectedService, this.props.services)}
-				<TabBarContainer />
+				<TabBarContainer onTabChange={this.props.onServiceChange}/>
 			</View>
 		)
 	}
+}
+
+MainContainer.propTypes = {
+	selectedService: PropTypes.string.isRequired,
+	services: PropTypes.array.isRequired,
+	onServiceChange: PropTypes.func.isRequired,
 }
 
 const styles = StyleSheet.create({

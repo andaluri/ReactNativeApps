@@ -14,12 +14,19 @@ export default class App extends React.Component {
                   { key: 'mail', isUp: true,  lastUpTime: null },
                 ],
         }
+        this._switchService = this._switchService.bind(this)
     }
+
+    _switchService(nextService) {
+        this.setState({selectedService: nextService})
+    }
+
     render() {
         return (
             <MainContainer 
               selectedService={this.state.selectedService}
               services={this.state.services}
+              onServiceChange={this._switchService}
             />
         )
     }
